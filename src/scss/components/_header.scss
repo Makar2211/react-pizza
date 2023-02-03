@@ -3,15 +3,25 @@
 .header {
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
+  @media (max-width: 645px) {
+    padding: 40px 0 0 0;
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
   }
 
   &__logo {
     display: flex;
+    margin-bottom: 10px;
 
     img {
       margin-right: 15px;
