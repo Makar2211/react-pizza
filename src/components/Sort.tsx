@@ -1,23 +1,23 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectSort, setSortCategory } from '../redux/slices/filterSlice';
+import { selectSort, setSortCategory, SortPropertyEnum } from '../redux/slices/filterSlice';
 import { IoMdArrowDropupCircle, IoMdArrowDropdownCircle } from 'react-icons/io';
 
-type SortItem = {
+export type SortItem = {
   name: string;
-  sortProperty: string;
+  sortProperty: SortPropertyEnum;
 }
 
 export const sorts: SortItem[] = [
-  { name: 'популярности(↓)', sortProperty: 'rating' },
-  { name: 'популярности(↑)', sortProperty: '-rating' },
-  { name: 'цене(↓)', sortProperty: 'price' },
-  { name: 'цене(↑)', sortProperty: '-price' },
-  { name: 'алфавиту(↓)', sortProperty: 'title' },
-  { name: 'алфавиту(↑)', sortProperty: '-title' },
+  { name: 'популярности(↓)', sortProperty: SortPropertyEnum.RAITING_DESC },
+  { name: 'популярности(↑)', sortProperty: SortPropertyEnum.RAITING_ASC },
+  { name: 'цене(↓)', sortProperty: SortPropertyEnum.PRICE_DESC},
+  { name: 'цене(↑)', sortProperty: SortPropertyEnum.PRICE_ASC },
+  { name: 'алфавиту(↓)', sortProperty: SortPropertyEnum.TITLE_DESC },
+  { name: 'алфавиту(↑)', sortProperty: SortPropertyEnum.TITLE_ASC },
 ];
 
-export const Sort: React.FC = () => {
+export const SortPopup: React.FC = () => {
   const sort = useSelector(selectSort);
   const dispatch = useDispatch();
   const sortRef = React.useRef<HTMLDivElement>(null);

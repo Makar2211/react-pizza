@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
-import { CartItem } from '../components/CartItem';
+import { CartItemBlock } from '../components/CartItem';
 import { clearItem, selectCart } from '../redux/slices/cartSlice';
 import { CartEmpty } from '../components/CartEmpty';
 
-export const Cart: React.FC = () => {
+const Cart: React.FC = () => {
   const dispatch = useDispatch();
   const { totalPrice, items } = useSelector(selectCart);
   const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
@@ -66,7 +66,7 @@ export const Cart: React.FC = () => {
             </div>
           </div>
           {items.map((item: any) => (
-            <CartItem key={item.id} {...item} />
+            <CartItemBlock key={item.id} {...item} />
           ))}
           <div className='cart__bottom'>
             <div className='cart__bottom-details'>
@@ -109,3 +109,5 @@ export const Cart: React.FC = () => {
     return <CartEmpty />;
   }
 };
+
+export default Cart;
